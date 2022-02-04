@@ -1,7 +1,7 @@
 <form action="action_page.php">
   <div class="container">
-    <h1>New user Register for DevOps Learning</h1>
-    <p>Please fill in this form to create an account.</p>
+    <h1>Welcome to the Space Science</h1>
+    <p>Please fill in the form and stay updated</p>
     <hr>
      
     <label for="Name"><b>Enter Name</b></label>
@@ -20,8 +20,8 @@
     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
     <br>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    <label for="psw-repeat"><b>Retype Password</b></label>
+    <input type="password" placeholder="Retype Password" name="psw-retype" id="psw-retype" required>
     <hr>
     <br>
     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
