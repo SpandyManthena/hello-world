@@ -16,7 +16,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("spandymanthena/hello-world:${TAG}")
+                    docker.build("spandy1932/hello-world:${TAG}")
                 }
             }
         }
@@ -24,8 +24,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("spandymanthena/hello-world:${TAG}").push()
-                        docker.image("spandymanthena/hello-world:${TAG}").push("latest")
+                        docker.image("spandy1932/hello-world:${TAG}").push()
+                        docker.image("spandy1932/hello-world:${TAG}").push("latest")
                     }
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh "docker stop hello-world | true"
                 sh "docker rm hello-world | true"
-                sh "docker run --name hello-world -d -p 9004:8080 spandymanthena/hello-world:${TAG}"
+                sh "docker run --name hello-world -d -p 9004:8080 spandy1932/hello-world:${TAG}"
             }
         }
     }
