@@ -1,2 +1,2 @@
-FROM tomcat:latest
-RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+From tomcat:8-jre8 
+COPY ./target/hello-world.war /usr/local/tomcat/webapps
