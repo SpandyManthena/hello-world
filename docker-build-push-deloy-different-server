@@ -40,7 +40,7 @@ pipeline {
 ENDSSH
                     '''
                     // Second way of putting the commands in single sh step
-                    // sh "ssh -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no ubuntu@dayal-test.letspractice.tk 'docker stop hello-world | true && docker rm hello-world | true && docker run --name hello-world -d -p 9004:8080 vigneshsweekaran/hello-world:${TAG}'"
+                    // sh "ssh -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no devops@172.31.111.64 'docker stop hello-world | true && docker rm hello-world | true && docker run --name hello-world -d -p 9005:8080 spandy1932/hello-world:${TAG}'"
                 }
             }
         }
