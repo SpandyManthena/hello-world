@@ -4,7 +4,7 @@ pipeline {
         maven "maven-3.8.4"
     }
     stages {
-        stage('Build') {
+        stage('Maven Build') {
             steps {
                 sh "mvn clean package"
             }
@@ -17,7 +17,7 @@ pipeline {
             }
          }
         }
-        stage('Build') {
+        stage('Ansible Build') {
             steps {
             node('ansible'){
             sh 'ansible-playbook /opt/docker/hello-world.yml'
