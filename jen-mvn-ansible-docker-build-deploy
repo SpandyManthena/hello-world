@@ -12,7 +12,7 @@ pipeline {
        stage('SSH to Ansible and deploy'){
         steps {
             withCredentials([sshUserPrivateKey(credentialsId: 'vm-key', keyFileVariable: 'SSH_PRIVATE_KEY_PATH')]) {
-            sh 'ssh -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no devops@172.31.111.64'
+            sh 'ssh -T -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no devops@172.31.111.64'
             sh 'scp -r $WORKSPACE/webapp/target/*.war devops@172.31.111.64://opt//docker'
             sh 'ansible-playbook /opt/docker/hello-world.yml'
         }
