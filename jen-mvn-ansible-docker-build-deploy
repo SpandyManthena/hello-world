@@ -17,7 +17,7 @@ pipeline {
             }
          }
         }
-        stage('Ansible Build') {
+        stage('Ansible-Build') {
             steps {
             node('ansible'){
             sh 'ansible-playbook /opt/docker/hello-world.yml'
