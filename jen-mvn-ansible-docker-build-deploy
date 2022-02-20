@@ -12,8 +12,8 @@ pipeline {
         stage('SSH to Ansible and deploy'){
          steps {
             sshagent(credentials: ['vm-key']) {
-            sh 'ssh -T -o StrictHostKeyChecking=no devops@172.31.111.64'
-            sh 'scp -r $WORKSPACE/webapp/target/*.war devops@172.31.111.64://opt//docker'
+            sh 'ssh -T -o StrictHostKeyChecking=no devops@172.31.237.94'
+            sh 'scp -r $WORKSPACE/webapp/target/*.war devops@172.31.237.94://opt//docker'
             }
          }
         }
