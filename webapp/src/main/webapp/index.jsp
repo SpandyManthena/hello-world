@@ -3,7 +3,7 @@
     <style>
       body {background-color: lightblue;text-align:center;}
       h1   {color: navy;}
-      p    {color: navy;}
+      p    {color: olive;}
     </style>
     <h1>Welcome to the Space Science</h1>
     <p>Please fill in the form and stay updated</p>
