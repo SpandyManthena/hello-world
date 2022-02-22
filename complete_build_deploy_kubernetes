@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    tools {
+        maven "maven-3.8.4"
+    }
+    stages {
+        stage('Maven Build') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+        stage('SSH to Ansible and deploy'){
+         steps {
+            sshagent(credentials: ['vm-key']) {
+            sh 'ssh -T -o StrictHostKeyChecking=no devops@172.31.237.94'
+            sh 'scp -r $WORKSPACE/webapp/target/*.war devops@172.31.237.94://opt//docker'
+            }
+         }
+        }
+        stage('Ansible-Build') {
+            steps {
+            node('ansible'){
+            sh 'ansible-playbook /opt/docker/hello-world.yml'
+            }
+            }
+        }
+         stage('Kubernetes-deploy') {
+            steps {
+            node('ansible'){
+            sh 'ansible-playbook -i /opt/docker/hosts /opt/docker/kube_deploy.yml'
+            }
+            }
+        }
+    }
+}
