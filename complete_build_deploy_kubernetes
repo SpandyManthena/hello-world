@@ -24,7 +24,7 @@ pipeline {
             }
             }
         }
-         stage('Kubernetes-deployment') {
+         stage('Kubernetes-Deployment') {
             steps {
             node('ansible'){
             sh 'ansible-playbook -i /opt/docker/hosts /opt/docker/kube_deploy.yml'
