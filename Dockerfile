@@ -1,2 +1,2 @@
 FROM tomcat:latest
-COPY ./target/hello-world.war /usr/local/tomcat/webapps
+COPY /var/lib/jenkins/workspace/project/webapp/target/*.war /usr/local/tomcat/webapps
