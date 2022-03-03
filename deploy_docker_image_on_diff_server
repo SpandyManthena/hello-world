@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.8.4' 
+    }
+    environment {
+        DATE = new Date().format('yy.M')
+        TAG = "${DATE}.${BUILD_NUMBER}"
+    }
+    stages {
+        stage ('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                script {
+                    docker.build("spandy1932/aws-rds:${TAG}")
+                }
+            }
+        }
+        stage('Pushing Docker Image to Dockerhub') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
+                        docker.image("spandy1932/aws-rds:${TAG}").push()
+                        docker.image("spandy1932/aws-rds:${TAG}").push("latest")
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps {
+                node('slave') {
+                    sh 'docker stop aws-rds | true'
+                    sh 'docker rm aws-rds | true'
+                    sh 'docker run --name aws-rds -d -p 9005:8080 spandy1932/aws-rds:${TAG}'
+            }
+        }
+    }
+}
