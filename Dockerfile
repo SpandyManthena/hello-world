@@ -1,2 +1,3 @@
 FROM tomcat:latest
-COPY /var/lib/jenkins/workspace/project/webapp/target/*.war /usr/local/tomcat/webapps
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY ./*.war /usr/local/tomcat/webapps
